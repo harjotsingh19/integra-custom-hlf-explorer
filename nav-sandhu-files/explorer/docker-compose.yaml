@@ -1,0 +1,71 @@
+
+# SPDX-License-Identifier: Apache-2.0
+version: '2.1'
+
+volumes:
+  pgdata:
+  walletstore:
+
+networks:
+  mynetwork.com:
+    external:
+      name: net_test
+
+services:
+
+  explorerdb.mynetwork.com:
+    image: hyperledger/explorer-db:latest
+    container_name: explorerdb.mynetwork.com
+    hostname: explorerdb.mynetwork.com
+    environment:
+      - DATABASE_DATABASE=fabricexplorer
+      - DATABASE_USERNAME=hppoc
+      - DATABASE_PASSWORD=password
+    healthcheck:
+      test: "pg_isready -h localhost -p 5432 -q -U postgres"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - mynetwork.com
+
+  explorer.mynetwork.com:
+    image: custom/1.2:latest
+    container_name: explorer.mynetwork.com
+    hostname: explorer.mynetwork.com
+    environment:
+      - DATABASE_HOST=explorerdb.mynetwork.com
+      - DATABASE_DATABASE=fabricexplorer
+      - DATABASE_USERNAME=hppoc
+      - DATABASE_PASSWD=password
+      - LOG_LEVEL_APP=debug
+      - LOG_LEVEL_DB=debug
+      - LOG_LEVEL_CONSOLE=info
+      - LOG_CONSOLE_STDOUT=true
+      - DISCOVERY_AS_LOCALHOST=false
+    volumes:      
+      - walletstore:/opt/explorer/wallet      
+      - ./explorer-data/config.json:/opt/explorer/app/platform/fabric/config.json
+      - ./explorer-data/connection-profile:/opt/explorer/app/platform/fabric/connection-profile      
+      - ./explorer-data/organizations:/opt/explorer/crypto-config                  
+      - ../../integra/blockchain_explorer/build:/opt/explorer/client/build
+      - ../../integra/blockchain_explorer/app/env-config.js:/opt/explorer/app/env-config.js
+      # - ../../integra/blockchain_explorer/app/dbroutes2.js:/opt/explorer/app/rest/dbroutes.js
+      # - ../../integra/blockchain_explorer/app/platform.js:/opt/explorer/app/platform/fabric/platform.js
+      # - ../../integra/blockchain_explorer/app/main.js:/opt/explorer/app/main.js
+      # - ../../integra/blockchain_explorer/app/MetricService2.js:/opt/explorer/app/persistence/fabric/MetricService.js
+    ports:
+      - 8080:8080
+    extra_hosts:
+      - peer0.integra.example.com:20.40.81.0
+      - peer1.integra.example.com:20.40.81.0     
+      - orderer.example.com:20.40.81.0
+      - peer0.integra-aws.example.com:20.40.81.0
+      - peer0.integra-gcp.example.com:20.40.81.0      
+    depends_on:
+      explorerdb.mynetwork.com:
+        condition: service_healthy
+    networks:
+      - mynetwork.com

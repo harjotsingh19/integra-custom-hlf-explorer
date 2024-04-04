@@ -1,0 +1,62 @@
+{
+    "name": "integra-integra",
+    "version": "1.0.0",
+    "client": {
+        "organization": "integra",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "integra": {
+            "mspid": "IntegraMSP",
+            "peers": [
+                "peer0.integra.integra.com",
+                "peer1.integra.integra.com"
+            ],
+            "certificateAuthorities": [
+                "ca.integra.integra.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.integra.integra.com": {
+            "url": "grpcs://peer0.integra.integra.com:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICEzCCAbmgAwIBAgIUedJyQOQza88JV+LJX78hz01dI5MwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRwwGgYDVQQK\nExNpbnRlZ3JhLmludGVncmEuY29tMR8wHQYDVQQDExZjYS5pbnRlZ3JhLmludGVn\ncmEuY29tMCAXDTI0MDQwMzA1MjUwMFoYDzIwNTQwMzI3MDUyNTAwWjBlMQswCQYD\nVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExHDAaBgNVBAoTE2ludGVn\ncmEuaW50ZWdyYS5jb20xHzAdBgNVBAMTFmNhLmludGVncmEuaW50ZWdyYS5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARgIHgu/8LVXR0pva9qP1f+7sEFrN4x\nJlFT33wTA3PgAs+2v5WrQt2mrZa3Z2ZdjSb91bonFMf5bJm6Ie62uU/yo0UwQzAO\nBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQUymUV\nYfbVpdizMfpGc4yYAas2+XEwCgYIKoZIzj0EAwIDSAAwRQIhAI/yKAnVeFJrVrGF\nc47jfiX6kQ2m4BbwwES3qONM0zy5AiAzbZbyg85aN8XKaymXHWSe2OY0/DbbGpLo\nkeY8Tvu5wQ==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.integra.integra.com",
+                "hostnameOverride": "peer0.integra.integra.com"
+            }
+        },
+        "peer1.integra.integra.com": {
+            "url": "grpcs://peer1.integra.integra.com:7052",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICEzCCAbmgAwIBAgIUedJyQOQza88JV+LJX78hz01dI5MwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRwwGgYDVQQK\nExNpbnRlZ3JhLmludGVncmEuY29tMR8wHQYDVQQDExZjYS5pbnRlZ3JhLmludGVn\ncmEuY29tMCAXDTI0MDQwMzA1MjUwMFoYDzIwNTQwMzI3MDUyNTAwWjBlMQswCQYD\nVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExHDAaBgNVBAoTE2ludGVn\ncmEuaW50ZWdyYS5jb20xHzAdBgNVBAMTFmNhLmludGVncmEuaW50ZWdyYS5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARgIHgu/8LVXR0pva9qP1f+7sEFrN4x\nJlFT33wTA3PgAs+2v5WrQt2mrZa3Z2ZdjSb91bonFMf5bJm6Ie62uU/yo0UwQzAO\nBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQUymUV\nYfbVpdizMfpGc4yYAas2+XEwCgYIKoZIzj0EAwIDSAAwRQIhAI/yKAnVeFJrVrGF\nc47jfiX6kQ2m4BbwwES3qONM0zy5AiAzbZbyg85aN8XKaymXHWSe2OY0/DbbGpLo\nkeY8Tvu5wQ==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.integra.integra.com",
+                "hostnameOverride": "peer1.integra.integra.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.integra.integra.com": {
+            "url": "https://ca-integra:7054",
+            "caName": "ca-integra",
+            "tlsCACerts": {
+                "pem": [
+                    "-----BEGIN CERTIFICATE-----\nMIICEzCCAbmgAwIBAgIUedJyQOQza88JV+LJX78hz01dI5MwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRwwGgYDVQQK\nExNpbnRlZ3JhLmludGVncmEuY29tMR8wHQYDVQQDExZjYS5pbnRlZ3JhLmludGVn\ncmEuY29tMCAXDTI0MDQwMzA1MjUwMFoYDzIwNTQwMzI3MDUyNTAwWjBlMQswCQYD\nVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExHDAaBgNVBAoTE2ludGVn\ncmEuaW50ZWdyYS5jb20xHzAdBgNVBAMTFmNhLmludGVncmEuaW50ZWdyYS5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARgIHgu/8LVXR0pva9qP1f+7sEFrN4x\nJlFT33wTA3PgAs+2v5WrQt2mrZa3Z2ZdjSb91bonFMf5bJm6Ie62uU/yo0UwQzAO\nBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQUymUV\nYfbVpdizMfpGc4yYAas2+XEwCgYIKoZIzj0EAwIDSAAwRQIhAI/yKAnVeFJrVrGF\nc47jfiX6kQ2m4BbwwES3qONM0zy5AiAzbZbyg85aN8XKaymXHWSe2OY0/DbbGpLo\nkeY8Tvu5wQ==\n-----END CERTIFICATE-----\n"
+                ]
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

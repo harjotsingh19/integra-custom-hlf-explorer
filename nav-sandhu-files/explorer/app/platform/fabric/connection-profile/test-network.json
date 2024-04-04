@@ -1,0 +1,48 @@
+{
+	"name": "integra-integra",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "integra-admin",
+			"password": "integra"
+		},
+		"enableAuthentication": true,
+		"organization": "IntegraMSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"integra-channel": {
+			"peers": {
+				"peer0.integra.integra.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"IntegraMSP": {
+			"mspid": "IntegraMSP",
+			"adminPrivateKey": {				
+				"path": "/opt/explorer/crypto-config/integra-key"
+			},
+			"peers": ["peer0.integra.integra.com"],
+			"signedCert": {
+				"path": "/opt/explorer/crypto-config/signcerts/cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.integra.integra.com": {
+			"tlsCACerts": {
+				"path": "/opt/explorer/crypto-config/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.integra.integra.com:7051"
+		}
+	}
+}

@@ -1,0 +1,59 @@
+{
+    "name": "first-network",
+    "version": "1.0.0",
+    "client": {
+        "tlsEnable": true,
+        "adminCredential": {
+            "id": "integra-admin",
+            "password": "integra"
+        },
+        "enableAuthentication": true,
+        "organization": "IntegraMSP",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "test-channel": {
+            "peers": {
+                "peer0.integra.example.com": {}
+            },
+            "connection": {
+                "timeout": {
+                    "peer": {
+                        "endorser": "6000",
+                        "eventHub": "6000",
+                        "eventReg": "6000"
+                    }
+                }
+            }
+        }
+    },
+    "organizations": {
+        "IntegraMSP": {
+            "mspid": "IntegraMSP",
+            "adminPrivateKey": {
+                "path": "/opt/explorer/crypto-config/peerOrganizations/integra.example.com/users/Admin@integra.example.com/msp/keystore/priv_sk"
+            },
+            "peers": [
+                "peer0.integra.example.com"
+            ],
+            "signedCert": {
+                "path": "/opt/explorer/crypto-config/peerOrganizations/integra.example.com/users/Admin@integra.example.com/msp/signcerts/Admin@integra.example.com-cert.pem"
+            }
+        }
+    },
+    "peers": {
+        "peer0.integra.example.com": {
+            "tlsCACerts": {
+                "path": "/opt/explorer/crypto-config/peerOrganizations/integra.example.com/peers/peer0.integra.example.com/msp/tlscacerts/tlsca.integra.example.com-cert.pem"
+            },
+            "url": "grpcs://peer0.integra.example.com:7051"
+        }
+    }
+}
